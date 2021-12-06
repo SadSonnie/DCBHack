@@ -19,19 +19,19 @@ print(sidesp, backsp)
 rowside = (sidesp - 60)/2
 sideobj = []
 backobj = []
+curwa = []
 s = 0
 b = 0
-for i in range(0,len(arr)):
+for i in range(len(arr)):
     if arr[i][0]<=sidesp:
-        sideobj.append(arr[i])
-        sideobj[s].append(i+1)
+        curwa = arr[i]
+        sideobj.append(curwa)
+        sideobj[s].extend(str(i+1))
         s+=1
-    print(i,arr)
     if arr[i][1]<=backsp:
         backobj.append(arr[i])
         backobj[b].append(i+1)
         b+=1
-    print(i, arr)
 print(sideobj)
 print(backobj)
 print(arr)

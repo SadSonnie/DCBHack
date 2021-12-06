@@ -30,5 +30,3 @@ for i in range(0,len(arr)):
         temp.append(i + 1)
         backobj.append(temp)
         b+=1
-print(sideobj)
-print(backobj)
