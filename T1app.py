@@ -130,6 +130,12 @@ previous1 = 0
 previous2 = 0
 temp = 0
 
+def check(l1, l2, w1, w2, h1, h2):
+    if l1<l2 and w1<w2 and h1+h2 <= 150:
+        return True
+    else:
+        return False
+
 for i in range(len(sideobj)):
     # if i == 0:
     #     list_of_coordinates.append(list(x, y - sideobj[i] + sideobj[0][0], y))
@@ -141,6 +147,11 @@ for i in range(len(sideobj)):
                 if y1 > 0:
                     previous1 += sideobj[i][1]
                     list_of_coordinates.append([x, y1, sideobj[i][2], x + sideobj[i][0], y1 + sideobj[i][1], sideobj[i][2], sideobj[i][3]])
+                    for j in range(len(sideobj)-1):
+                        if sideobj[j+1][3] in indexlist:
+                            if check(sideobj[i][0], sideobj[j+1][0], sideobj[i][1], sideobj[j+1][1], sideobj[i][2], sideobj[j+1][2]) == True:
+                                list_of_coordinates.append([x, y1, sideobj[j+1][2], x + sideobj[i][0], y1 + sideobj[i][1], sideobj[j+1][2], sideobj[j+1][3]])
+                                indexlist.remove(sideobj[j+1][3])
                     indexlist.remove(sideobj[i][3])
                     plus_2_minus_first = False
                 else:
@@ -150,6 +161,11 @@ for i in range(len(sideobj)):
                 previous1 += sideobj[i][1]
                 if y2 + sideobj[i][2] < 500:
                     list_of_coordinates.append([x, y2, sideobj[i][2], x + sideobj[i][0], y2 + sideobj[i][1], sideobj[i][2], sideobj[i][3]])
+                    for j in range(len(sideobj)-1):
+                        if sideobj[j + 1][3] in indexlist:
+                            if check(sideobj[i][0], sideobj[j+1][0], sideobj[i][1], sideobj[j+1][1], sideobj[i][2], sideobj[j+1][2]) == True:
+                                list_of_coordinates.append([x, y2, sideobj[j+1][2], x + sideobj[i][0], y2 + sideobj[i][1], sideobj[j+1][2], sideobj[j+1][3]])
+                                indexlist.remove(sideobj[j+1][3])
                     plus_2_minus_first = True
                     indexlist.remove(sideobj[i][3])
             both_sides = False
@@ -160,6 +176,11 @@ for i in range(len(sideobj)):
                 if y3 > 0:
                     previous2 += sideobj[i][1]
                     list_of_coordinates.append([x - 320 - sideobj[i][0], y3, sideobj[i][2], x - 320, y3 + sideobj[i][1], sideobj[i][2], sideobj[i][3]])
+                    for j in range(len(sideobj)-1):
+                        if sideobj[j + 1][3] in indexlist:
+                            if check(sideobj[i][0], sideobj[j+1][0], sideobj[i][1], sideobj[j+1][1], sideobj[i][2], sideobj[j+1][2]) == True:
+                                list_of_coordinates.append([x, y3, sideobj[j+1][2], x + sideobj[i][0], y3 + sideobj[i][1], sideobj[j+1][2], sideobj[j+1][3]])
+                                indexlist.remove(sideobj[j+1][3])
                     plus_2_minus_second = False
                     indexlist.remove(sideobj[i][3])
                 else:
@@ -169,10 +190,17 @@ for i in range(len(sideobj)):
                 previous2 += sideobj[i][1]
                 if y4 + sideobj[i][2] < 500:
                     list_of_coordinates.append([x - 320 - sideobj[i][0], y4, sideobj[i][2], x - 320, y4 + sideobj[i][1], sideobj[i][2], sideobj[i][3]])
+                    for j in range(len(sideobj)-1):
+                        if sideobj[j + 1][3] in indexlist:
+                            if check(sideobj[i][0], sideobj[j+1][0], sideobj[i][1], sideobj[j+1][1], sideobj[i][2], sideobj[j+1][2]) == True:
+                                list_of_coordinates.append([x, y4, sideobj[j+1][2], x + sideobj[i][0], y4 + sideobj[i][1], sideobj[j+1][2], sideobj[j+1][3]])
+                                indexlist.remove(sideobj[j+1][3])
                     plus_2_minus_second = True
                     indexlist.remove(sideobj[i][3])
             both_sides = True
 
 print(list_of_coordinates)
+for i in range(len(list_of_coordinates)):
+    print(list_of_coordinates[i][2])
 print(len(list_of_coordinates))
 
