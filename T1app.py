@@ -58,11 +58,47 @@ for i in range(0,len(arr)):
     #2,1,0
 
 
-    if arr[i][1]<=backsp and :
+    if arr[i][1]<=backsp and arr[i][2]<=150:
         temp = arr[i].copy()
         temp.append(i + 1)
         backobj.append(temp)
         b+=1
+    # 0,1,2
+    if arr[i][2]<=backsp and arr[i][1]<=150:
+        temp = arr[i].copy()
+        temp[0], temp[1], temp[2] = temp[0], temp[2], temp[1]
+        temp.append(i + 1)
+        backobj.append(temp)
+        b+=1
+    # 0,2,1
+    if arr[i][0]<=backsp and arr[i][2]<=150:
+        temp = arr[i].copy()
+        temp[0], temp[1], temp[2] = temp[1], temp[0], temp[2]
+        temp.append(i + 1)
+        backobj.append(temp)
+        b+=1
+    # 1,0,2
+    if arr[i][2]<=backsp and arr[i][0]<=150:
+        temp = arr[i].copy()
+        temp[0], temp[1], temp[2] = temp[1], temp[2], temp[0]
+        temp.append(i + 1)
+        backobj.append(temp)
+        b+=1
+    # 1,2,0
+    if arr[i][0]<=backsp and arr[i][1]<=150:
+        temp = arr[i].copy()
+        temp[0], temp[1], temp[2] = temp[2], temp[0], temp[1]
+        temp.append(i + 1)
+        backobj.append(temp)
+        b+=1
+    # 2,0,1
+    if arr[i][1]<=backsp and arr[i][0]<=150:
+        temp = arr[i].copy()
+        temp[0], temp[1], temp[2] = temp[2], temp[1], temp[0]
+        temp.append(i + 1)
+        backobj.append(temp)
+        b+=1
+    # 2,1,0
 print(sideobj)
 print(backobj)
 def MyFn(s):
