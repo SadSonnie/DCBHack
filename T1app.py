@@ -21,36 +21,36 @@ backobj = []
 s = 0
 b = 0
 for i in range(0,len(arr)):
-    if arr[i][0]<=sidesp and arr[i][2]<=150:
+    if arr[i][0]<=sidesp and arr[i][2]<=150 and arr[i][1]<=500:
         temp = arr[i].copy()
         temp.append(i+1)
         sideobj.append(temp)
     #0,1,2
-    if arr[i][0]<=sidesp and arr[i][1]<=150:
+    if arr[i][0]<=sidesp and arr[i][1]<=150 and arr[i][2]<=500:
         temp = arr[i].copy()
         temp[0], temp[1], temp[2] = temp[0], temp[2], temp[1]
         temp.append(i+1)
         sideobj.append(temp)
     #0,2,1
-    if arr[i][1]<=sidesp and arr[i][2]<=150:
+    if arr[i][1]<=sidesp and arr[i][2]<=150 and arr[i][0]<=500:
         temp = arr[i].copy()
         temp[0], temp[1], temp[2] = temp[1], temp[0], temp[2]
         temp.append(i+1)
         sideobj.append(temp)
     #1,0,2
-    if arr[i][1]<=sidesp and arr[i][0]<=150:
+    if arr[i][1]<=sidesp and arr[i][0]<=150 and arr[i][2]<=500:
         temp = arr[i].copy()
         temp[0], temp[1], temp[2] = temp[1], temp[2], temp[0]
         temp.append(i+1)
         sideobj.append(temp)
     #1,2,0
-    if arr[i][2]<=sidesp and arr[i][1]<=150:
+    if arr[i][2]<=sidesp and arr[i][1]<=150 and arr[i][0]<=500:
         temp = arr[i].copy()
         temp[0], temp[1], temp[2] = temp[2], temp[0], temp[1]
         temp.append(i+1)
         sideobj.append(temp)
     #2,0,1
-    if arr[i][2]<=sidesp and arr[i][0]<=150:
+    if arr[i][2]<=sidesp and arr[i][0]<=150 and arr[i][1]<=500:
         temp = arr[i].copy()
         temp[0], temp[1], temp[2] = temp[2], temp[1], temp[0]
         temp.append(i+1)
@@ -58,41 +58,41 @@ for i in range(0,len(arr)):
     #2,1,0
 
 
-    if arr[i][1]<=backsp and arr[i][2]<=150:
+    if arr[i][1]<=backsp and arr[i][2]<=150 and arr[i][0]<=500:
         temp = arr[i].copy()
         temp.append(i + 1)
         backobj.append(temp)
         b+=1
     # 0,1,2
-    if arr[i][2]<=backsp and arr[i][1]<=150:
+    if arr[i][2]<=backsp and arr[i][1]<=150 and arr[i][0]<=500:
         temp = arr[i].copy()
         temp[0], temp[1], temp[2] = temp[0], temp[2], temp[1]
         temp.append(i + 1)
         backobj.append(temp)
         b+=1
     # 0,2,1
-    if arr[i][0]<=backsp and arr[i][2]<=150:
+    if arr[i][0]<=backsp and arr[i][2]<=150 and arr[i][1]<=500:
         temp = arr[i].copy()
         temp[0], temp[1], temp[2] = temp[1], temp[0], temp[2]
         temp.append(i + 1)
         backobj.append(temp)
         b+=1
     # 1,0,2
-    if arr[i][2]<=backsp and arr[i][0]<=150:
+    if arr[i][2]<=backsp and arr[i][0]<=150 and arr[i][1]<=500:
         temp = arr[i].copy()
         temp[0], temp[1], temp[2] = temp[1], temp[2], temp[0]
         temp.append(i + 1)
         backobj.append(temp)
         b+=1
     # 1,2,0
-    if arr[i][0]<=backsp and arr[i][1]<=150:
+    if arr[i][0]<=backsp and arr[i][1]<=150 and arr[i][2]<=500:
         temp = arr[i].copy()
         temp[0], temp[1], temp[2] = temp[2], temp[0], temp[1]
         temp.append(i + 1)
         backobj.append(temp)
         b+=1
     # 2,0,1
-    if arr[i][1]<=backsp and arr[i][0]<=150:
+    if arr[i][1]<=backsp and arr[i][0]<=150 and arr[i][2]<=500:
         temp = arr[i].copy()
         temp[0], temp[1], temp[2] = temp[2], temp[1], temp[0]
         temp.append(i + 1)
@@ -159,4 +159,3 @@ for i in range(len(sideobj)):
             both_sides = True
 
 print(list_of_coordinates)
-
