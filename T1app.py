@@ -11,7 +11,7 @@ while True:
     # выводим строку
     arr.append(list(map(int, line.split())))
 # закрываем файл
-print(arr)
+# print(arr)
 f1.close()
 sidesp = (garx - 320)/2
 backsp = (gary-560)
@@ -99,12 +99,64 @@ for i in range(0,len(arr)):
         backobj.append(temp)
         b+=1
     # 2,1,0
-print(sideobj)
-print(backobj)
+# print(sideobj)
+# print(backobj)
 def MyFn(s):
     return s[0]*s[1]
 
 sideobj = sorted(sideobj,key =MyFn, reverse=True)
 backobj = sorted(backobj,key =MyFn, reverse=True)
-print(sideobj)
-print(backobj)
+# print(sideobj)
+# print(backobj)
+
+y = 250
+y1 = y
+y2 = y
+x = garx - sidesp
+sideminus = 0
+indexlist = []
+control = 0
+both_sides = True
+plus_2_minus_first = True
+plus_2_minus_second = True
+for i in range(len(sideobj)):
+    indexlist.append(i+1)
+
+list_of_coordinates = []
+
+for i in range(len(sideobj)):
+    # if i == 0:
+    #     list_of_coordinates.append(list(x, y - sideobj[i] + sideobj[0][0], y))
+    previous = sideobj[i][1]/2
+    if sideobj[i][3] in indexlist:
+        if both_sides == True:
+            if plus_2_minus_first == True:
+                list_of_coordinates.append([x, y1 - previous, sideobj[i][2], x + sideobj[i][0], y1 + previous, sideobj[i][2], sideobj[i][3]])
+                previous = sideobj[i][1]/2
+                y1 = y - previous
+                plus_2_minus_first = False
+                indexlist.remove(sideobj[i][3])
+            else:
+                list_of_coordinates.append([x, y2 - previous, sideobj[i][2], x + sideobj[i][0], y2 + previous, sideobj[i][2], sideobj[i][3]])
+                previous = sideobj[i][1] / 2
+                y2 = y1 + 2*previous
+                plus_2_minus_first = True
+                indexlist.remove(sideobj[i][3])
+            both_sides = False
+        else:
+            if plus_2_minus_second == True:
+                list_of_coordinates.append([x - 320, y1 - previous, sideobj[i][2], x - sideobj[i][0], y1 + previous, sideobj[i][2], sideobj[i][3]])
+                previous = sideobj[i][1] / 2
+                y1 = y - previous
+                plus_2_minus_second = False
+                indexlist.remove(sideobj[i][3])
+            else:
+                list_of_coordinates.append([x - 320, y2 - previous, sideobj[i][2], x - sideobj[i][0], y2 + previous, sideobj[i][2], sideobj[i][3]])
+                previous = sideobj[i][1] / 2
+                y2 = y1 + 2 * previous
+                plus_2_minus_second = True
+                indexlist.remove(sideobj[i][3])
+            both_sides = True
+
+print(list_of_coordinates)
+
