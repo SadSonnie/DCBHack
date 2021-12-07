@@ -26,7 +26,7 @@ def clicked():
         if not line:
             break
         # выводим строку
-        arr.append(list(map(int, line.split(sep=' '))))
+        arr.append(list(map(int, line.split(sep=', '))))
     # закрываем файл
     # print(arr)
     f1.close()
@@ -274,10 +274,13 @@ def clicked():
     out = open("output.txt", "w")
     outr = sorted(outr, key=itemgetter(6))
 
-    outr = [int(x) for x in outr[j] for j in range(len(outr))]
+    for i in range(len(outr)):
+        for j in range(len(outr[i])):
+            outr[i][j]=int(outr[i][j])
+    print(outr)
 
     for i in range(len(outr)):
-        str_a = ' '.join((str(e) for e in outr[i])
+        str_a = ', '.join(map(str, outr[i]))
         out.write(str_a + '\n')
     out.close()
 
@@ -307,4 +310,3 @@ btn = Button(window, text="Submit", command=clicked)
 btn.grid(column=1, row=4)
 
 window.mainloop()
-
