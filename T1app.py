@@ -271,7 +271,7 @@ def clicked():
 
     outr = list_of_coordinates
     count = 0
-    out = open("output.txt", "w")
+    out = open("output.txt", "w") //hj
     outr = sorted(outr, key=itemgetter(6))
 
     for i in range(len(outr)):
