@@ -134,11 +134,12 @@ def clicked():
     x = garx - sidesp
     sideminus = 0
     indexlist = []
+    indexlist2 = []
     control = 0
     both_sides = True
     plus_2_minus_first = True
     plus_2_minus_second = True
-    for i in range(len(sideobj)):
+    for i in range(len(arr)):
         indexlist.append(i + 1)
 
     list_of_coordinates = []
@@ -246,32 +247,33 @@ def clicked():
                         plus_2_minus_second = True
                 both_sides = True
 
-    x_zad = sidesp + 60
+    x_zad = (garx - 200)/2
     y_zad = 560
 
+
     if y_zad < gary - 60:
-        for i in range(len(sideobj)):
-            if sideobj[i][3] in indexlist:
-                x_zad += sideobj[i][0]
-                if x_zad + sideobj[i][0] < garx - 2 * x_zad and y_zad + sideobj[i][1] <= gary:
+        for i in range(len(backobj)):
+            if backobj[i][3] in indexlist:
+                if x_zad + backobj[i][0] < garx - ((garx - 200)/2) and y_zad + backobj[i][1] <= gary:
+                    x_zad += backobj[i][0]
                     list_of_coordinates.append(
-                        [x_zad, y_zad, sideobj[i][2], x_zad + sideobj[i][0], y_zad + sideobj[i][1], sideobj[i][2],
-                         sideobj[i][3]])
+                        [x_zad, y_zad, backobj[i][2], x_zad + backobj[i][0], y_zad + backobj[i][1], backobj[i][2],
+                         backobj[i][3]])
                     prov = 0
-                    indexlist.remove(sideobj[i][3])
-                    for j in range(len(sideobj) - 1):
-                        if sideobj[j + 1][3] in indexlist:
-                            if check(sideobj[i][0], sideobj[j + 1][0], sideobj[i][1], sideobj[j + 1][1],
-                                     sideobj[i][2] + prov, sideobj[j + 1][2]) == True:
+                    indexlist.remove(backobj[i][3])
+                    for j in range(len(backobj) - 1):
+                        if backobj[j + 1][3] in indexlist:
+                            if check(backobj[i][0], backobj[j + 1][0], backobj[i][1], backobj[j + 1][1],
+                                     backobj[i][2] + prov, backobj[j + 1][2]) == True:
                                 list_of_coordinates.append(
-                                    [x_zad, y_zad, sideobj[j + 1][2] + sideobj[i][2], x_zad + sideobj[i][0],
-                                     y_zad + sideobj[i][1], sideobj[j + 1][2] + sideobj[i][2], sideobj[j + 1][3]])
-                                prov += sideobj[j + 1][2] + sideobj[i][2]
-                                indexlist.remove(sideobj[j + 1][3])
+                                    [x_zad, y_zad, backobj[j + 1][2] + backobj[i][2], x_zad + backobj[i][0],
+                                     y_zad + backobj[i][1], backobj[j + 1][2] + backobj[i][2], backobj[j + 1][3]])
+                                prov += backobj[j + 1][2] + backobj[i][2]
+                                indexlist.remove(backobj[j + 1][3])
 
     outr = list_of_coordinates
     count = 0
-    out = open("output.txt", "w") //hj
+    out = open("output.txt", "w")
     outr = sorted(outr, key=itemgetter(6))
 
     for i in range(len(outr)):
